@@ -1,58 +1,137 @@
 import Header from "./components/Header.tsx";
-import Nav from "./components/Nav";
+import Nav from "./components/Nav.tsx";
 import Footer from "./components/Footer.tsx";
-import {createBrowserRouter, Route, Routes, RouterProvider} from "react-router";
-import Home from "./components/mains/Home.tsx";
+import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import Education from "./components/mains/Education.tsx";
+import Home from "./components/mains/Home.tsx";
 import Experiences from "./components/mains/Experiences.tsx";
-import Organizations from "./components/mains/Organizations.tsx";
 import Skills from "./components/mains/Skills.tsx";
+import Organizations from "./components/mains/Organizations.tsx";
 import Projects from "./components/mains/Projects.tsx";
+import styled from "styled-components";
 
-function Root() {
-    return (
-      <>
-          <Header/>
-          <Nav/>
-            <Routes>
-                <Route
-                    path={`/`}
-                    element={<Home/>}
-                />
-                <Route
-                    path={`/education.education.html`}
-                    element={<Education/>}
-                />
-                <Route
-                    path={`/experiences/experiences.html`}
-                    element={<Experiences/>}
-                />
-                <Route
-                    path={`/organizations/organizations.html`}
-                    element={<Organizations/>}
-                />
-                <Route
-                    path={`/skills/skills.html`}
-                    element={<Skills/>}
-                />
-                <Route
-                    path={`/projects/projects.html`}
-                    element={<Projects/>}
-                />
-            </Routes>
-          <Footer/>
-      </>
+
+const StyledWrapper=styled.div`
+    width: 80vw;
+    margin: auto;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    font-family: Georgia, serif;
+    font-size: calc(2px + 2vh);
+`;
+
+const StyledNavMain = styled.div`
+    display: flex;
+    flex-direction: row;
+    
+    @media (max-width: 750px) {
+        flex-direction: column;
+    }
+`;
+
+export const StyledMain = styled.main`
+    border: 2px solid #25343f;
+    
+    width: 70%;
+    background-color: #EAEFEF;
+    padding: 5%;
+
+    margin: auto;
+    text-align: center;
+    
+    h2 {
+        padding: 3%;
+        text-decoration: underline;
+    }
+    
+    img {
+        border: 6px solid #25343F;
+        max-width: 80%;
+    }
+    
+    ul {
+        padding-left: 0;
+        list-style: none;
+    }
+    
+    li {
+        padding: 3%;
+    }
+    
+    p {
+        width: 85%;
+
+        margin: 5% auto;
+        text-align: center;
+
+        padding: 2%;
+    }
+    
+    h3 {
+        text-decoration: underline;
+    }
+    
+    @media (max-width: 750px) {
+        width: 100%;
+    }
+`
+
+function Root(){
+    return(
+        <StyledWrapper>
+            <Header />
+                <StyledNavMain>
+                    <Nav/>
+                    <Outlet/>
+                </StyledNavMain>
+            <Footer/>
+        </StyledWrapper>
     );
 }
 
-const router=createBrowserRouter(
-    [{path:"*", Component:Root}]
-)
+const router=createBrowserRouter([
+    {
+        path:"/", Component:Root,
+        element: <Root/>,
+        children: [
+            {
+                index: true,
+                element: <Home/>
+            },
+            {
+                path: "/education",
+                element: <Education/>
+            },
+            {
+                path: "/experiences",
+                element: <Experiences/>
+            },
+            {
+                path: "/skills",
+                element: <Skills/>
+            },
+            {
+                path: "/projects",
+                element: <Projects/>
+            },
+            {
+                path: "/organizations",
+                element: <Organizations/>
+            },
+
+        ],
+    },
+]);
+
 
 export default function App() {
-      return (
+
+    return (
         <>
             <RouterProvider router={router}/>
         </>
-      )
-    }
+    )
+}
