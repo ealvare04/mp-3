@@ -16,23 +16,25 @@ export default function Skills() {
         <StyledMain>
             <StyledSkills>
             <h2>Skills</h2>
-
+                <div>
                     <h3>Web Development</h3>
-                    <ul className="main-list">
+                    <ul>
                         <li>React</li>
                         <li>Django</li>
                         <li>CSS</li>
                     </ul>
-
+                </div>
+                <div>
                     <h3>Databases</h3>
-                    <ul className="main-list">
+                    <ul>
                         <li>SQLite</li>
                         <li>MongoDB</li>
                         <li>XML</li>
                     </ul>
-
+                </div>
+                <div>
                     <h3>Programming Languages</h3>
-                    <ul className="main-list">
+                    <ul>
                         <li>Java</li>
                         <li>Python</li>
                         <li>C</li>
@@ -40,6 +42,7 @@ export default function Skills() {
                         <li>Rust</li>
                         <li>Go</li>
                     </ul>
+                </div>
             </StyledSkills>
         </StyledMain>
     );

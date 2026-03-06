@@ -132,7 +132,6 @@ export default function Projects() {
         <StyledMain>
             <h2>Projects</h2>
             <StyledProjects>
-
                 <StyledCalculator>
                     <h2>JavaScript Calculator</h2>
                     <StyledInputs>
@@ -140,14 +139,14 @@ export default function Projects() {
                         <input
                             id={`first`}
                             value={first}
-                            placeholder="enter first number"
+                            placeholder="..."
                             onChange={(e)=>setFirst(e.target.value)}
                         />
                         <label htmlFor="second">Second Number: </label>
                         <input
                             id={`second`}
                             value={second}
-                            placeholder="enter second number"
+                            placeholder="..."
                             onChange={(e)=> setSecond(e.target.value)}
                         />
                     </StyledInputs>
