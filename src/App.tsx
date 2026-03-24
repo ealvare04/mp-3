@@ -1,7 +1,7 @@
 import Header from "./components/Header.tsx";
 import Nav from "./components/Nav.tsx";
 import Footer from "./components/Footer.tsx";
-import {Route, Routes, createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+import {Route, Routes, createBrowserRouter, RouterProvider} from "react-router-dom";
 import Education from "./components/mains/Education.tsx";
 import Home from "./components/mains/Home.tsx";
 import Experiences from "./components/mains/Experiences.tsx";
@@ -85,7 +85,32 @@ function Root(){
             <Header />
                 <StyledNavMain>
                     <Nav/>
-                    <Outlet/>
+                    <Routes>
+                        <Route
+                            path={`/`}
+                            element={<Home/>}
+                        />
+                        <Route
+                            path={`/education/education.html`}
+                            element={<Education/>}
+                        />
+                        <Route
+                            path={`/experiences/experiences.html`}
+                            element={<Experiences/>}
+                        />
+                        <Route
+                            path={`/organizations/organizations.html`}
+                            element={<Organizations/>}
+                        />
+                        <Route
+                            path={`/projects/projects.html`}
+                            element={<Projects/>}
+                        />
+                        <Route
+                            path={`/skills/skills.html`}
+                            element={<Skills/>}
+                        />
+                    </Routes>
                 </StyledNavMain>
             <Footer/>
         </StyledWrapper>
@@ -97,39 +122,9 @@ function Root(){
 /* https://reactrouter.com/api/declarative-routers/BrowserRouter */
 /* https://reactrouter.com/api/components/Outlet */
 
-const router=createBrowserRouter([
-    {
-        path:"/", Component:Root,
-        element: <Root/>,
-        children: [
-            {
-                index: true,
-                element: <Home/>
-            },
-            {
-                path: "/education",
-                element: <Education/>
-            },
-            {
-                path: "/experiences",
-                element: <Experiences/>
-            },
-            {
-                path: "/skills",
-                element: <Skills/>
-            },
-            {
-                path: "/projects",
-                element: <Projects/>
-            },
-            {
-                path: "/organizations",
-                element: <Organizations/>
-            },
-
-        ],
-    },
-]);
+const router=createBrowserRouter(
+    [{ path:"*", Component:Root}]
+)
 
 
 export default function App() {
