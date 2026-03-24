@@ -1,7 +1,7 @@
 import Header from "./components/Header.tsx";
 import Nav from "./components/Nav.tsx";
 import Footer from "./components/Footer.tsx";
-import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
+import {Route, Routes, createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
 import Education from "./components/mains/Education.tsx";
 import Home from "./components/mains/Home.tsx";
 import Experiences from "./components/mains/Experiences.tsx";
@@ -92,6 +92,11 @@ function Root(){
     );
 }
 
+/* previously tried using Outlet using documentation below */
+
+/* https://reactrouter.com/api/declarative-routers/BrowserRouter */
+/* https://reactrouter.com/api/components/Outlet */
+
 const router=createBrowserRouter([
     {
         path:"/", Component:Root,
@@ -128,10 +133,7 @@ const router=createBrowserRouter([
 
 
 export default function App() {
-
     return (
-        <>
-            <RouterProvider router={router}/>
-        </>
+        <><RouterProvider router={router}/></>
     )
 }
